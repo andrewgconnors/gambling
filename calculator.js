@@ -1,3 +1,9 @@
+document.querySelector("#lines").addEventListener("keyup", event => {
+    if(event.key !== "Enter") return;
+    calculate();
+    event.preventDefault();
+});
+
 function calculate() {
     var oddsList = document.getElementById('lines').value.split(",");
     var impliedProbs = [];
