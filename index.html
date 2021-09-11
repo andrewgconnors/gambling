@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <p>
+            Enter the odds (American format), separated by commas:
+        </p>
+        <input id="lines">
+        <button onclick="calculate()">Calculate</button>
+        <span>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Implied probabilities</td><td id="impl_probs"></td>
+                    </tr>
+                    <tr>
+                        <td>Overround</td><td id="overround"></td>
+                    </tr>
+                    <tr>
+                        <td>Vig</td><td id="vig"></td>
+                    </tr>
+                    <tr>
+                        <td>Adjusted probabilities</td><td id="adj_probs"></td>
+                    </tr>
+                    <tr>
+                        <td>Vig-free odds</td><td id="vigfree_odds"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </span>
+
+        <script src="calculator.js"></script>
+    </body>
+</html>
