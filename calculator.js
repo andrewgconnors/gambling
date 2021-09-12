@@ -7,7 +7,6 @@ document.querySelector("#lines").addEventListener("keyup", event => {
 function calculate() {
     var oddsList = document.getElementById('lines').value.split(",");
     var impliedProbs = [];
-    console.log(oddsList);
     for (var odds of oddsList) {
         odds = odds.trim();
         if (odds[0] === '+')
