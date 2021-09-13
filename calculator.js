@@ -20,18 +20,13 @@ function calculate() {
             return;
         }
     }
-    document.getElementById('impl_probs').innerHTML = impliedProbs.toString();
+    document.getElementById('impl_probs').innerHTML = impliedProbs.map(odds => odds.toFixed(4)).toString();
     var impliedSum = impliedProbs.reduce((prev, current) => prev + current, 0);
-    document.getElementById('overround').innerHTML = impliedSum.toString();
+    document.getElementById('overround').innerHTML = impliedSum.toFixed(4).toString();
     var vig = 1 - 1/impliedSum;
-    document.getElementById('vig').innerHTML = (100*vig).toString() + "%";
-    var adjustedProbs = [];
-    for (var p of impliedProbs)
-        adjustedProbs.push(p/impliedSum);
-    document.getElementById('adj_probs').innerHTML = adjustedProbs.toString();
-    var adjustedOdds = [];
-    for (var p of adjustedProbs) {
-        adjustedOdds.push(p > 0.5 ? "-" + (100.0*p/(1-p)).toString() : "+" + ((100.0 - 100.0*p)/p).toString());
-    }
+    document.getElementById('vig').innerHTML = (100*vig).toFixed(2).toString() + "%";
+    var adjustedProbs = impliedProbs.map(p => p/impliedSum);
+    document.getElementById('adj_probs').innerHTML = adjustedProbs.map(odds => odds.toFixed(4)).toString();
+    var adjustedOdds = adjustedProbs.map(p => (p > 0.5 ? "-" + (100.0*p/(1-p)).toFixed(2).toString() : "+" + ((100.0 - 100.0*p)/p).toFixed(2).toString()));
     document.getElementById('vigfree_odds').innerHTML = adjustedOdds.toString();
 }
