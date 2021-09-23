@@ -22,6 +22,7 @@ function calculate() {
     var odds = {};
     var units = {};
 
+    var bet_win_probs = {};
     var ev = {};
     var variance = {};
 
@@ -48,9 +49,10 @@ function calculate() {
 
     for (let combo of combos) {
         let p_win = combo.map(team => team_probs[team]).reduce((prev, cur) => prev*cur, 1);
+        bet_win_probs[combo] = p_win;
         let reward = (americanToDecimal(odds[combo]) - 1) * units[combo];
         ev[combo] = p_win * reward - ((1 - p_win) * units[combo]);
         variance[combo] = p_win * Math.pow((reward - ev[combo]), 2) + (1 - p_win) * Math.pow((-1*units[combo] - ev[combo]), 2);
-        document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td>${combo}</td><td>${ev[combo]}</td><td>${variance[combo]}</td></tr>`)
+        document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td>${combo}</td><td>${bet_win_probs[combo]}</td><td>${ev[combo]}</td><td>${variance[combo]}</td></tr>`)
     }
 }
