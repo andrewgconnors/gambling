@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- <meta name="description" content="Calculate vig-free odds for an unlimited number of lines.">
+        <meta name="keywords" content="odds,lines,betting,vig,vig-free,vigorish,vigorish-free,vig-free odds,vigfree odds,fair odds,vig-free lines,vigfree lines,fair lines,vigorish-free lines,odds calculator,calculate odds"> -->
+        <title>Teasers</title>
+
+        <style>
+            .label {
+                margin: 0;
+                padding: 0;
+            }
+            td {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>
+            Teasers
+        </h2>
+        <h3>
+            Enter everything separated by commas, and click calculate
+        </h3>
+
+        <p class="label">Team names and estimated win probabilities (as a decimal):</p>
+        <p class="label">E.g.: each line should be of the form "Patriots 0.77". Each team should be on its own line.</p>
+        <textarea id="teams" style="width: 95%;max-width: 40rem;" rows=8></textarea>
+
+        <p class="label">2-team combo bets, odds, and # of units wagered:</p>
+        <p class="label">E.g.: each line should be of the form "Patriots Ravens -106 1". Each bet should be on its own line.</p>
+        <textarea id="combos" style="width: 95%;max-width: 40rem;" rows=12></textarea>
+        <br>
+        <button onclick="calculate()">Calculate</button>
+        <span>
+            <table>
+                <thead>
+                    <th>Bet</th>
+                    <th>EV (units)</th>
+                    <th>Var (units<sup>2</sup>)</th>
+                </thead>
+                <tbody id="stats">
+                </tbody>
+            </table>
+        </span>
+
+        <br>
+        <p>
+            View the source or report a bug <a href="https://github.com/andrewgconnors/vigfree-calculator/">here</a>.
+        </p>
+
+        <script src="teasers.js"></script>
+    </body>
+</html>
