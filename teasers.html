@@ -31,10 +31,10 @@
 
         <h4 class="label">2-team combo bets, odds, and # of units wagered:</h4>
         <p class="label">E.g.: each line should be of the form "Patriots Ravens -106 1". Each bet should be on its own line.</p>
-        <textarea id="combos" style="width: 95%;max-width: 40rem;" rows=12></textarea>
+        <textarea id="bets" style="width: 95%;max-width: 40rem;" rows=12></textarea>
         <br>
         <button onclick="calculate()">Calculate</button>
-        <span>
+        <div id="results">
             <table>
                 <thead>
                     <th>Bet</th>
@@ -45,13 +45,20 @@
                 <tbody id="stats">
                 </tbody>
             </table>
-        </span>
+            <div id="outcome_plot" style="width: 95%; max-width:80rem; height:40rem;"></div>
+            <div id="p_selected_container" style="visibility: hidden;">
+                <p>
+                    Probability mass of selection: <span id="p_selected"></span>
+                </p>
+            </div>
+        </div>
 
         <br>
         <p>
             View the source or report a bug <a href="https://github.com/andrewgconnors/vigfree-calculator/">here</a>.
         </p>
 
+        <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
         <script src="teasers.js"></script>
     </body>
 </html>
