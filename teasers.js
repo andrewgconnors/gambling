@@ -132,11 +132,12 @@ function calculate() {
         bet_potential_winnings[bet] = reward;
         ev[bet] = p_win * reward - ((1 - p_win) * units_bet[bet]);
         variance[bet] = p_win * Math.pow((reward - ev[bet]), 2) + (1 - p_win) * Math.pow((-1*units_bet[bet] - ev[bet]), 2);
-        document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td>${bet}</td><td>${bet_win_probs[bet]}</td><td>${ev[bet]}</td><td>${variance[bet]}</td></tr>`)
+        document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td>${bet}</td><td>${bet_win_probs[bet]}</td><td>${ev[bet]}</td><td>${variance[bet]}</td><td>${units_bet[bet]}</td></tr>`)
     }
     // Total EV
     let totalEV = Object.values(ev).reduce((prev, cur) => prev + cur, 0);
-    document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td><strong>Total</strong></td><td></td><td>${totalEV}</td><td></td></tr>`);
+    let totalWagered = Object.values(units_bet).reduce((prev, cur) => prev + cur, 0);
+    document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td><strong>Total</strong></td><td></td><td>${totalEV}</td><td></td><td>${totalWagered}</td></tr>`);
 
     // Filter out only the teams involved in the combo bets, and compute all possible outcomes
     let allGameOutcomeCombos = enumerateGameOutcomes(team_probs, bets, bet_odds, units_bet, bet_potential_winnings);
