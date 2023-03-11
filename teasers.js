@@ -1,3 +1,5 @@
+// TODO: Duplicated code
+// Calculate decimal format odds, where the odds include the original bet (so 1 is the lowest possible odds)
 function americanToDecimal(odds) {
     if (odds[0] === '+')
         return 1 + (parseFloat(odds.substring(1)) / 100);
