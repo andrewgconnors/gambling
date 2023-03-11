@@ -1,4 +1,3 @@
-# vigfree-calculator
-n-way vigfree calculator
+# Gambling Tools
 
-https://andrewgconnors.github.io/vigfree-calculator/
+[n-way vigfree calculator](https://andrewgconnors.github.io/gambling/calculator.html)
