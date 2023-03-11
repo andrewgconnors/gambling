@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- <meta name="description" content="Calculate vig-free odds for an unlimited number of lines.">
+        <meta name="keywords" content="odds,lines,betting,vig,vig-free,vigorish,vigorish-free,vig-free odds,vigfree odds,fair odds,vig-free lines,vigfree lines,fair lines,vigorish-free lines,odds calculator,calculate odds"> -->
+        <title>Hedge Bet Calculator</title>
+        <link rel="shortcut icon" type="image/png" href="./favicon.png">
+
+        <style>
+            .label {
+                margin: 0;
+                padding: 0;
+            }
+            td {
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>
+            Hedge Bet Calculator
+        </h2>
+
+        <p>Enter odds in American format</p>
+
+        <h3>Original Bet</h3>
+
+        <span class="label" for="originalBetOdds">Odds:</span>
+        <input id="originalBetOdds" style="width: 5rem;" />
+        <span class="label" for="originalBetAmount">Amount:</span>
+        <input id="originalBetAmount" style="width: 5rem;" />
+
+        <span class="label" for="originalIsFreeBet">Free bet?</span>
+        <input id="originalIsFreeBet" type="checkbox" />
+
+        <h3>Hedge Bet</h3>
+
+        <span class="label" for="hedgeBetOdds">Odds:</span>
+        <input id="hedgeBetOdds" style="width: 5rem;" />
+
+        <!-- Use this if the user can enter a custom hedge amount -->
+        <!-- <span class="label" for="hedgeBetAmount">Amount:</span>
+        <input id="hedgeBetAmount" style="width: 5rem;" /> -->
+
+        <div style="margin-top:1rem;">
+            <button onclick="calculate()">Calculate</button>
+        </div>
+
+        <div id="results" style="margin-top:1rem;">
+            <table style="border-spacing: 10px;">
+                <thead>
+                    <th>Hedge Amount</th>
+                    <th>Total Payout</th>
+                    <th>Guaranteed Profit</th>
+                </thead>
+                <tbody id="stats">
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <p>
+            <a href="index.html">Return to homepage</a>.
+        </p>
+
+        <script src="hedge.js"></script>
+    </body>
+</html>
