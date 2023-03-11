@@ -30,7 +30,7 @@ function calculate() {
 
     obLoses['totalPayout'] = hedgeBetOdds * hedgeBetAmount;
     // Net profit = hedge bet profit - original bet amount (lost)
-    obLoses['netProfit'] = obLoses['totalPayout'] - hedgeBetAmount - originalBetAmount;
+    obLoses['netProfit'] = obLoses['totalPayout'] - hedgeBetAmount - (originalIsFreeBet ? 0 : originalBetAmount);
 
     document.getElementById('obWins').innerHTML = "<th>OB wins</th>";
     document.getElementById('obLoses').innerHTML = "<th>OB loses</th>";
