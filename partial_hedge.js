@@ -22,18 +22,24 @@ function calculate() {
     var hedgeBetOdds = americanToDecimal(document.getElementById('hedgeBetOdds').value);
     var hedgeBetAmount = parseFloat(document.getElementById('hedgeBetAmount').value);
 
+    var totalRisked = (originalIsFreeBet ? 0 : originalBetAmount) + hedgeBetAmount;
     var obWins = {}, obLoses = {};
 
-    obWins['totalPayout'] = originalBetOdds * originalBetAmount;
+    obWins['totalPayout'] = originalBetOdds * originalBetAmount - (originalIsFreeBet ? originalBetAmount : 0);
     // Net profit = original bet profit - hedge bet amount (lost)
-    obWins['netProfit'] = obWins['totalPayout'] - originalBetAmount - hedgeBetAmount;
+    obWins['netProfit'] = obWins['totalPayout'] - totalRisked;
 
     obLoses['totalPayout'] = hedgeBetOdds * hedgeBetAmount;
     // Net profit = hedge bet profit - original bet amount (lost)
-    obLoses['netProfit'] = obLoses['totalPayout'] - hedgeBetAmount - (originalIsFreeBet ? 0 : originalBetAmount);
+    obLoses['netProfit'] = obLoses['totalPayout'] - totalRisked;
 
     document.getElementById('obWins').innerHTML = "<th>OB wins</th>";
     document.getElementById('obLoses').innerHTML = "<th>OB loses</th>";
-    document.getElementById('obWins').insertAdjacentHTML('beforeend', `<td>${obWins['totalPayout'].toFixed(2)}</td><td>${obWins['netProfit'].toFixed(2)}</td>`);
-    document.getElementById('obLoses').insertAdjacentHTML('beforeend', `<td>${obLoses['totalPayout'].toFixed(2)}</td><td>${obLoses['netProfit'].toFixed(2)}</td>`);
+    document.getElementById('obWins').insertAdjacentHTML('beforeend',
+        `<td rowspan="2">${totalRisked}</td>
+         <td>${obWins['totalPayout'].toFixed(2)}</td>
+         <td>${obWins['netProfit'].toFixed(2)}</td>`);
+    document.getElementById('obLoses').insertAdjacentHTML('beforeend',
+        `<td>${obLoses['totalPayout'].toFixed(2)}</td>
+         <td>${obLoses['netProfit'].toFixed(2)}</td>`);
 }
