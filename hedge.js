@@ -25,10 +25,16 @@ function calculate() {
     var originalRisk = originalIsFreeBet ? 0 : originalBetAmount;
     var hedgeAmount = (originalProfit + originalRisk) / hedgeBetOdds;
 
-    var totalWagered = originalBetAmount + hedgeAmount;
+    var totalRisked = originalRisk + hedgeAmount;
     var guaranteedProfit = originalProfit - hedgeAmount;
-    var totalPayout = totalWagered + guaranteedProfit;
+    var totalPayout = totalRisked + guaranteedProfit;
 
     document.getElementById('stats').innerHTML = "";
-    document.getElementById('stats').insertAdjacentHTML('beforeend', `<tr><td>${hedgeAmount.toFixed(2)}</td><td>${totalPayout.toFixed(2)}</td><td>${guaranteedProfit.toFixed(2)}</td></tr>`)
+    document.getElementById('stats').insertAdjacentHTML('beforeend',
+        `<tr>
+            <td>${hedgeAmount.toFixed(2)}</td>
+            <td>${totalRisked.toFixed(2)}</td>
+            <td>${totalPayout.toFixed(2)}</td>
+            <td>${guaranteedProfit.toFixed(2)}</td>
+         </tr>`)
 }
