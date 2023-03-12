@@ -5,11 +5,16 @@ document.querySelector("#lines").addEventListener("keyup", event => {
 });
 
 function calculate() {
-    var oddsList = document.getElementById('lines').value.split(",");
+    var oddsList = document.getElementById('lines').value;
+    oddsList = oddsList.replaceAll('-', ',-');
+    oddsList = oddsList.replaceAll('+', ',+');
+    oddsList = oddsList.split(",");
     var impliedProbs = [];
     for (var odds of oddsList) {
         odds = odds.trim();
-        if (odds[0] === '+')
+        if (odds.length === 0)
+            continue;
+        else if (odds[0] === '+')
             impliedProbs.push(100.0/(100.0 + parseFloat(odds.substring(1))));
         else if (odds[0] === '-') {
             var risk = parseFloat(odds.substring(1));
