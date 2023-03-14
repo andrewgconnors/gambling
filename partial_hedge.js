@@ -1,7 +1,9 @@
-document.querySelector("#hedgeBetAmount").addEventListener("keyup", event => {
-    if(event.key !== "Enter") return;
-    calculate();
-    event.preventDefault();
+document.querySelectorAll("input").forEach((node) => {
+    node.addEventListener("keyup", event => {
+        if(event.key !== "Enter") return;
+        calculate();
+        event.preventDefault();
+    })
 });
 
 // TODO: Duplicated code
