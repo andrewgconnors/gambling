@@ -12,13 +12,13 @@
         <h2>
             Vig-free Calculator
         </h2>
-        <h3>
+        <p>
             Enter unlimited lines in American odds format, optionally separated by commas, and click calculate
-        </h3>
+        </p>
         <p>
             E.g.: -110,+200,+500,... OR -110+200+500
         </p>
-        <input id="lines" style="width: 95%;max-width: 40rem;">
+        <input id="lines" style="width: 95%;max-width: 40rem;" oninput="vigfreeInputHasChanged(this.value)">
         <button onclick="calculate()">Calculate</button>
         <span>
             <table>
@@ -41,6 +41,16 @@
                 </tbody>
             </table>
         </span>
+
+        <h2>EV Calculation</h2>
+
+        <p>Enter 1 line to calculate EV against each line above; or, enter multiple lines in the same order as above to calculate EV 1-for-1</p>
+        <input id="ev_calc_lines" type="text" style="width: 95%;max-width: 40rem;" oninput="calculateEv()" />
+        <div style="margin-top: 0.5rem;">EV (%): </span><span id="ev_percentages"></span>
+
+        <div id="warning" style="display: none;">
+            <h3>Input has changed for vig-free calculation above; please click "Calculate" again</h3>
+        </div>
 
         <br>
         <p>
