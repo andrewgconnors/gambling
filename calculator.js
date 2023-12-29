@@ -64,7 +64,7 @@ function ev(trueProbability, odds) {
     }
     else if (odds[0] === '-') {
         let risk = parseFloat(odds.substring(1));
-        return trueProbability * 100 - (1 - trueProbability) * risk
+        return 100 * (trueProbability * 100 - (1 - trueProbability) * risk) / risk;
     }
 }
 
