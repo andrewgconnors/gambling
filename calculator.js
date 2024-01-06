@@ -68,8 +68,24 @@ function ev(trueProbability, odds) {
     }
 }
 
+function freeBetEv(trueProbability, odds) {
+    // For a freebet risk is 0, so
+    // EV = P(win) * Reward
+    // EV % = 100 * EV
+    if (odds[0] === '+') {
+        return trueProbability * parseFloat(odds.substring(1))
+    }
+    else if (odds[0] === '-') {
+        let risk = parseFloat(odds.substring(1));
+        let reward = 100 / risk;
+        let ev = trueProbability * reward;
+        return 100 * ev;
+    }
+}
+
 function calculateEv() {
     let oddsList = oddsStringToList(document.getElementById('ev_calc_lines').value);
+    let isFreeBet = document.getElementById('isFreeBet').checked;
     if (!adjustedProbs || oddsList.length === 0) {
         document.getElementById('ev_percentages').innerHTML = '';
         return;
@@ -79,7 +95,7 @@ function calculateEv() {
         odds = oddsList[0];
         if (odds.length === 0)
             return;
-        document.getElementById('ev_percentages').innerHTML = adjustedProbs.map(p => ev(p, odds).toFixed(2).toString()).join(", ");
+        document.getElementById('ev_percentages').innerHTML = adjustedProbs.map(p => (isFreeBet ? freeBetEv(p, odds) : ev(p, odds)).toFixed(2).toString()).join(", ");
     }
     else {
         // Calculate the EV of the lines paired with the corresponding prob in adjustedProbs, by position
@@ -90,7 +106,7 @@ function calculateEv() {
             if (odds.length === 0)
                 continue;
             let p = adjustedProbs[j];
-            evList.push(ev(p, odds));
+            evList.push(isFreeBet ? freeBetEv(p, odds) : ev(p, odds));
             if (p < adjustedProbs.length)
                 ++j;
             else

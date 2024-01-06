@@ -46,6 +46,11 @@
 
         <p>Enter 1 line to calculate EV against each line above; or, enter multiple lines in the same order as above to calculate EV 1-for-1</p>
         <input id="ev_calc_lines" type="text" style="width: 95%;max-width: 40rem;" oninput="calculateEv()" />
+        <div style="margin-top:.5rem; display:flex; flex-direction:row; align-items: center;">
+            <span class="label" for="isFreeBet"><strong>Free bet?</strong></span>
+            <input id="isFreeBet" type="checkbox" style="zoom:2; accent-color: violet;" oninput="calculateEv()" />
+        </div>
+
         <div style="margin-top: 0.5rem;">EV (%): </span><span id="ev_percentages"></span>
 
         <div id="warning" style="display: none;">
